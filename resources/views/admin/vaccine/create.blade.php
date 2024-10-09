@@ -15,7 +15,7 @@
                         <div class="flex flex-col">
                             <label for="center_name" class="text-sm font-medium text-gray-700">Vaccine Center
                                 Name</label>
-                            <input type="text" name="center_name" id="center_name" value="kjdfgdf"
+                            <input type="text" name="center_name" id="center_name"
                                 class="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
                                 value="{{ old('center_name') }}">
                             @error('center_name')

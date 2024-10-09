@@ -12,7 +12,7 @@ class VaccineCenterService
     {
         DB::transaction(function () use ($data, $image) {
             return VaccineCenter::create([
-                'center_name' => "DFSds",
+                'center_name' => $data['center_name'],
                 'address' => $data['address'],
                 'daily_limit' => $data['daily_limit'],
             ]);

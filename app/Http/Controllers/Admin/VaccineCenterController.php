@@ -15,7 +15,8 @@ class VaccineCenterController extends Controller
      */
     public function index()
     {
-        return view('admin.vaccine.index');
+        $vaccineCenters = VaccineCenter::latest('id')->get();
+        return view('admin.vaccine.index', ['vaccineCenters' => $vaccineCenters]);
     }
 
     /**
