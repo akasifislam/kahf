@@ -29,7 +29,7 @@
             @endif
 
             <!-- Registration Form -->
-            <form action="" method="POST" class="p-6 space-y-6">
+            <form action="{{ route('vaccine.registration.store') }}" method="POST" class="p-6 space-y-6">
                 @csrf
 
                 <!-- Name -->
@@ -37,7 +37,7 @@
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                     <input type="text" name="name" id="name"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        value="{{ old('name') }}" required>
+                        value="{{ old('name') }}">
                     @error('name')
                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
@@ -48,7 +48,7 @@
                     <label for="nid" class="block text-sm font-medium text-gray-700 mb-1">National ID</label>
                     <input type="text" name="nid" id="nid"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        value="{{ old('nid') }}" required>
+                        value="{{ old('nid') }}">
                     @error('nid')
                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
@@ -59,7 +59,7 @@
                     <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                     <input type="tel" name="phone" id="phone"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        value="{{ old('phone') }}" required>
+                        value="{{ old('phone') }}">
                     @error('phone')
                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
@@ -70,7 +70,7 @@
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                     <input type="email" name="email" id="email"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        value="{{ old('email') }}" required>
+                        value="{{ old('email') }}">
                     @error('email')
                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
@@ -78,17 +78,16 @@
 
                 <!-- Center Name -->
                 <div>
-                    <label for="center_name" class="block text-sm font-medium text-gray-700 mb-1">Vaccination
+                    <label for="center_id" class="block text-sm font-medium text-gray-700 mb-1">Vaccination
                         Center</label>
-                    <select name="center_name" id="center_name"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        required>
+                    <select name="center_id" id="center_id"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                         <option value="">Select a center</option>
-                        <option value="center1">Vaccination Center 1</option>
-                        <option value="center2">Vaccination Center 2</option>
-                        <option value="center3">Vaccination Center 3</option>
+                        @foreach ($centers as $center)
+                            <option value="{{ $center->id }}">{{ $center->center_name }}</option>
+                        @endforeach
                     </select>
-                    @error('center_name')
+                    @error('center_id')
                         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
                 </div>

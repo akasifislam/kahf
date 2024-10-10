@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::get('/vaccine-reg', [FrontendController::class, 'user_register'])->name('frontend.reg');
+Route::post('/vaccine-reg', [FrontendController::class, 'user_register_store'])->name('vaccine.registration.store');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

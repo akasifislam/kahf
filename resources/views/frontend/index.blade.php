@@ -30,9 +30,10 @@
             <h1 class="text-4xl font-bold mb-4">Get Informed About COVID-19 Vaccines</h1>
             <p class="text-xl mb-8">Protect yourself and others. Learn about vaccine safety, efficacy, and availability.
             </p>
-            <a href="#"
-                class="bg-white text-blue-500 px-6 py-3 rounded-full font-bold hover:bg-blue-100 transition duration-300">Find
-                a Vaccination Center</a>
+            <a href="{{ route('frontend.reg') }}"
+                class="bg-white text-blue-500 px-6 py-3 rounded-full font-bold hover:bg-blue-100 transition duration-300">
+                Vaccine Registration
+            </a>
         </div>
     </section>
 
