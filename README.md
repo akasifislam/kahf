@@ -89,3 +89,42 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### Mail Configration
 
 ![mail](https://github.com/user-attachments/assets/64547ebc-b2dd-4eaf-93ad-bd74e9c2c732)
+
+## Future Upgrade: Adding SMS Notifications
+
+To incorporate SMS notifications alongside email notifications for vaccine schedules in the future, the following steps will be implemented:
+
+1. **Bulk SMS Provider Selection:**
+
+    - Select an appropriate bulk SMS provider.
+    - Begin the integration process according to the provider's API documentation.
+
+2. **Helper Method Creation:**
+
+    - Create a new helper file in the `app/Helpers` directory (e.g., `SmsHelper.php`).
+    - Write a method in this file for sending SMS, utilizing the bulk SMS provider's API.
+
+3. **Configuration Setup:**
+
+    - Add SMS provider API credentials to the `.env` file.
+    - Create a new configuration file in the `config` directory to store SMS settings.
+
+4. **Update Notification Logic:**
+
+    - Integrate SMS sending logic with the existing email sending logic.
+    - In the `SendVaccineReminders` command, call the SMS helper method immediately after sending the email.
+
+5. **Error Handling:**
+
+    - Implement try-catch blocks to handle any potential errors during SMS sending.
+    - Set up an error logging system to record any failed SMS deliveries.
+
+6. **Testing:**
+
+    - Conduct extensive testing to ensure both email and SMS notifications are working correctly.
+    - Write unit tests using a mock SMS service.
+
+7. **Monitoring:**
+    - Set up a monitoring system to track SMS delivery rates and failure rates.
+
+By following this approach, we can easily add SMS notifications to the current email notification system, providing users with more effective communication channels.
