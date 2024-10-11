@@ -1,13 +1,3 @@
-## About Laravel
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
 ### Task specifications 🏗️
 
 -   Create a registration page where users can register for vaccination (consider that only one doze of vaccine will be given).
