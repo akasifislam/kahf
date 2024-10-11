@@ -40,12 +40,13 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
     -   composer install
     -   npm install && npm run dev
     -   cp .env.example .env
+    -   database configure
     -   php artisan key:generate
-    -   php artisan migare --seed
-    -   php artisan serve --port=9000
     -   php artisan migrate:fresh --seed
+    -   php artisan serve --port=9000
     ## login credential
 
+    - backend login url: http://127.0.0.1:9000/login
     - email: admin@mail.com
     - password: secret007
 
