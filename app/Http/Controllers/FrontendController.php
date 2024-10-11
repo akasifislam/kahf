@@ -49,7 +49,7 @@ class FrontendController extends Controller
         ]);
         // return $request;
         // return Registrations::first();
-        $patient = Patient::with('registration')->where('nid', $request->nid)->first();
+        $patient = Patient::with('registration.vaccinationSchedule')->where('nid', $request->nid)->first();
         return view('frontend.vaccine_card', compact('patient'));
     }
 }

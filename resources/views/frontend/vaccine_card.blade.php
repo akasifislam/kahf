@@ -124,8 +124,22 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-600">Status</p>
-                                <p class="text-lg font-semibold text-green-600">{{ $patient->status }}</p>
+                                <p class="text-lg font-semibold text-green-600">
+                                    @php
+                                        $today = date('Y-m-d');
+                                        $scheduledDate = date(
+                                            'Y-m-d',
+                                            strtotime($patient->registration->vaccinationSchedule->scheduled_date),
+                                        );
+                                    @endphp
+
+                                    @if ($today < $scheduledDate)
+                                        Scheduled
+                                    @else
+                                        Vaccinated
+                                    @endif
+
+                                </p>
                             </div>
                         </div>
                     </div>
