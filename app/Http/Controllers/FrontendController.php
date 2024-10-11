@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Schema;
 
 class FrontendController extends Controller
 {
+    protected $vaccineRegistrationService;
+
+    public function __construct(VaccineRegistrationService $vaccineRegistrationService)
+    {
+        $this->vaccineRegistrationService = $vaccineRegistrationService;
+    }
+
     public function index()
     {
         return view('frontend.index');
@@ -26,49 +33,23 @@ class FrontendController extends Controller
     }
 
 
-    public function determineScheduleDate($centerId)
-    {
-        $center = VaccineCenter::findOrFail($centerId);
-        $date = Carbon::today();
-        while (true) {
-            $registrationCount = Registrations::where('vaccine_center_id', $centerId)
-                ->whereDate('scheduled_date', $date)
-                ->count();
-
-            if ($registrationCount < $center->daily_limit) {
-                return $date;
-            }
-            $date->addDay();
-        }
-    }
 
     public function user_register_store(StorePatientRequest $request)
     {
-        $patient = Patient::create($request->validated());
+        $result = $this->vaccineRegistrationService->store($request->validated(), $request->center_id);
 
-        $scheduledDate = $this->determineScheduleDate($request->center_id);
-
-        // Create registrations
-        $registration = Registrations::create([
-            'patient_id' => $patient->id,
-            'vaccine_center_id' => $request->center_id,
-            'status' => 'Scheduled',
-            'scheduled_date' => $scheduledDate,
-        ]);
-
-        VaccinationSchedule::create([
-            'registration_id' => $registration->id,
-            'scheduled_date' => $scheduledDate,
-            'notified_at' => Carbon::parse($scheduledDate)->subDay()->setTime(21, 0),
-        ]);
-
-        return redirect()->back()->with('success', 'Registration successful! Your scheduled date is: ' . $scheduledDate->format('Y-m-d'));
+        return redirect()->back()->with('success', 'Registration successful! Your scheduled date is: ' . $result['scheduled_date']->format('Y-m-d'));
     }
 
 
-    // public function user_register_store(StorePatientRequest $request, VaccineRegistrationService $vaccineRegistrationService)
-    // {
-    //     $vaccineRegistrationService->store($request->validated(), $request->center_id);
-    //     return redirect()->back()->with('success', 'Registration successful!');
-    // }
+    public function vaccine_card(Request $request)
+    {
+        $validated = $request->validate([
+            'nid' => 'required'
+        ]);
+        // return $request;
+        // return Registrations::first();
+        $patient = Patient::with('registration')->where('nid', $request->nid)->first();
+        return view('frontend.vaccine_card', compact('patient'));
+    }
 }

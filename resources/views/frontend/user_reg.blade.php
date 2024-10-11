@@ -12,6 +12,30 @@
             font-family: 'Poppins', sans-serif;
         }
     </style>
+    <style>
+        /* ... existing styles ... */
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen flex items-center justify-center">
@@ -94,14 +118,27 @@
 
                 <!-- Submit Button -->
                 <div>
-                    <button type="submit"
+                    <button id="submitButton" type="submit"
                         class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300">
-                        Register for Vaccination
+                        <span id="buttonText">Register for Vaccination</span>
+                        <span id="spinner" class="spinner hidden"></span>
                     </button>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            var button = document.getElementById('submitButton');
+            var buttonText = document.getElementById('buttonText');
+            var spinner = document.getElementById('spinner');
+
+            button.disabled = true;
+            button.classList.add('opacity-50', 'cursor-not-allowed');
+            buttonText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+        });
+    </script>
 </body>
 
 </html>
