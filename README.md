@@ -34,6 +34,9 @@
     -   php artisan key:generate
     -   php artisan migrate:fresh --seed
     -   php artisan serve --port=9000
+
+
+    ## Task Schedule
     -   php artisan vaccine:send-reminders - NB: need mail configration
     ## login credential
 
