@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\VaccineCenterController;
+use App\Http\Controllers\PatientScheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::resource('vaccinecenters', VaccineCenterController::class);
+    Route::get('patient-schedule', [PatientScheduleController::class, 'index'])->name('patient.schedule');
 });
