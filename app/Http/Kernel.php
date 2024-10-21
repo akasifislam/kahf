@@ -24,22 +24,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->command('vaccine:send-reminders')->dailyAt('21:00');
-    }
-
-
-    /**
-     * Register the commands for the application.
-     */
-    protected function commands(): void
-    {
-        $this->load(__DIR__ . '/Commands');
-
-        require base_path('routes/console.php');
-    }
-
     /**
      * The application's route middleware groups.
      *
